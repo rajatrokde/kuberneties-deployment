@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: raj-deployment
+spec:
+  replicas: 1  # Number of pod replicas in the ReplicaSet
+  selector:
+    matchLabels:
+      app: raj
+  template:
+    metadata:
+      labels:
+        app: raj
+    spec:
+      containers:
+        - name: raj
+          image: rajatrokde/php-backend
+          ports:
+            - containerPort: 80
+          resources: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: raj-service
+spec:
+  selector:
+    app: raj
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
