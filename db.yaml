@@ -28,19 +28,21 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: database-deployment
+  name: mysql-deployment  # Updated name for clarity
 spec:
   selector:
     matchLabels:
-      app: database
+      app: mysql  # Updated to match Service selector
   template:
     metadata:
       labels:
-        app: database
+        app: mysql  # Updated to match Service selector
     spec:
       containers:
         - name: database
           image: rajatrokde/k-8-db  # Replace with your actual DB image
+          ports:
+            - containerPort: 3306  # Exposing MySQL port
           volumeMounts:
             - mountPath: /data/db  # Path inside the container for DB data
               name: db-storage
@@ -56,8 +58,9 @@ metadata:
   name: mysql-service
 spec:
   selector:
-    app: mysql
+    app: mysql  # Matching the Deployment label
   ports:
     - port: 3306
       targetPort: 3306
-
+  # Uncomment the following line if you want external access
+  # type: NodePort
