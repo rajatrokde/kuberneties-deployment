@@ -1,27 +1,54 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: db-pv
+spec:
+  capacity:
+    storage: 5Gi  # Adjust storage as needed
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /mnt/data  # Path on the host where data is stored
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: db-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi  # Match this with the PV storage size
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: database-deployment
 spec:
   selector:
     matchLabels:
-      app: mysql
-  replicas: 1
+      app: database
   template:
     metadata:
       labels:
-        app: mysql
+        app: database
     spec:
       containers:
-        - name: mysql
-          image: rajatrokde/k-8-db:latest
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              value: "password"
-            - name: MYSQL_DATABASE
-              value: "students"
-          ports:
-            - containerPort: 3306
+        - name: database
+          image: rajatrokde/k-8-db  # Replace with your actual DB image
+          volumeMounts:
+            - mountPath: /data/db  # Path inside the container for DB data
+              name: db-storage
+      volumes:
+        - name: db-storage
+          persistentVolumeClaim:
+            claimName: db-pvc
+
 ---
 apiVersion: v1
 kind: Service
