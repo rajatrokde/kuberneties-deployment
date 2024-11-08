@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: raj
-          image: rajatrokde/php-backend
+          image: rajatrokde/php-db
           ports:
             - containerPort: 80
           resources: {}
