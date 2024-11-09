@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: raj
-          image: rajatrokde/php-db  # Docker image
+          image: rajatrokde/k-8-fe:v1  # Docker image
           ports:
             - containerPort: 80
           resources: {}
