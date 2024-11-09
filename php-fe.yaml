@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: raj
-          image: rajatrokde/php-db  # Docker image to use
+          image: rajatrokde/k-8-fe:v1 # Docker image to use
           ports:
             - containerPort: 80  # Container port exposed
           resources: {}  # Placeholder for resource limits if needed
