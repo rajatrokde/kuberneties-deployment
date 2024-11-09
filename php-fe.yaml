@@ -7,6 +7,11 @@ spec:
   selector:
     matchLabels:
       app: raj
+  strategy:
+    type: RollingUpdate  # Rollout strategy
+    rollingUpdate:
+      maxUnavailable: 1   # Max unavailable pods during the update
+      maxSurge: 1         # Max pods created above the desired replicas during the update
   template:
     metadata:
       labels:
@@ -14,21 +19,7 @@ spec:
     spec:
       containers:
         - name: raj
-          image: rajatrokde/k-8-fe:v1 # Docker image to use
+          image: rajatrokde/php-db  # Docker image
           ports:
-            - containerPort: 80  # Container port exposed
-          resources: {}  # Placeholder for resource limits if needed
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: raj-services
-spec:
-  selector:
-    app: raj
-  ports:
-    - protocol: TCP
-      port: 80        # Exposed port for the service
-      targetPort: 80  # Port on the container to route traffic to
-  type: NodePort       # Type of service to expose on a node's IP and port
+            - containerPort: 80
+          resources: {}
