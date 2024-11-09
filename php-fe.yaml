@@ -23,3 +23,16 @@ spec:
           ports:
             - containerPort: 80
           resources: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: raj-services
+spec:
+  selector:
+    app: raj
+  ports:
+    - protocol: TCP
+      port: 80        # Exposed port for the service
+      targetPort: 80  # Port on the container to route traffic to
+  type: NodePort       # Type of service to expose on a node's IP and port
