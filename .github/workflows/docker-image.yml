@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main  # Changes this to the branch you want to trigger the CI/CD pipeline on
-      - master # Changes this to the branch you want to trigger the CI/CD pipeline on
+     # - master # Changes this to the branch you want to trigger the CI/CD pipeline on
 
 jobs:
   build-and-deploy:
