@@ -7,11 +7,6 @@ spec:
   selector:
     matchLabels:
       app: raj
-  strategy:
-    type: RollingUpdate  # Rollout strategy
-    rollingUpdate:
-      maxUnavailable: 1   # Max unavailable pods during the update
-      maxSurge: 1         # Max pods created above the desired replicas during the update
   template:
     metadata:
       labels:
