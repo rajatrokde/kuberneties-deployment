@@ -15,6 +15,7 @@ spec:
       containers:
         - name: raj
           image: rajatrokde/k-8-fe:latest  # Docker image
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
           resources: {}
