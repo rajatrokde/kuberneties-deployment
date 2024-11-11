@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: raj
-          image: rajatrokde/k-8-fe:v1  # Docker image
+          image: rajatrokde/k-8-fe:latest  # Docker image
           ports:
             - containerPort: 80
           resources: {}
@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: raj-services
+  name: raj-service
 spec:
   selector:
     app: raj
