@@ -23,7 +23,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t rajatrokde/k-8-fe:v1 .
-          docker push rajatrokde/k-8-fe:v1
+          docker build -t rajatrokde/k-8-fe:latest .
+          docker push rajatrokde/k-8-fe:latest
 
    #de/k-8-fe:v1
