@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-reader
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+  selector:
+    app: db-reader
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-reader
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-reader
+  template:
+    metadata:
+      labels:
+        app: db-reader
+    spec:
+      containers:
+        - name: db-reader
+          image: your-db-reader-image:latest
+          env:
+            - name: POSTGRES_USER
+              value: your_user
+            - name: POSTGRES_PASSWORD
+              value: your_password
+            - name: POSTGRES_DB
+              value: your_database
+
+
+### Notes:
+- Replace
+your-db-writer-image
+,
