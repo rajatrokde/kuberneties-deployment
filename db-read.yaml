@@ -25,14 +25,14 @@ spec:
     spec:
       containers:
         - name: db-reader
-          image: your-db-reader-image:latest
+          image: mysql:latest
           env:
-            - name: POSTGRES_USER
-              value: your_user
+            - name: MYSQL_USER
+              value: root
             - name: POSTGRES_PASSWORD
-              value: your_password
+              value: password
             - name: POSTGRES_DB
-              value: your_database
+              value: students
 
 
 ### Notes:
