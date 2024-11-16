@@ -34,8 +34,3 @@ spec:
             - name: POSTGRES_DB
               value: students
 
-
-### Notes:
-- Replace
-your-db-writer-image
-,
