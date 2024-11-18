@@ -130,11 +130,11 @@ You have now successfully created an AWS EKS cluster, deployed your PHP and MySQ
 For any issues or questions, feel free to open an issue in this repository or contact me directly.
 
 ## About
-Created by **Chirag Puniyani**
+Created by **Rajat Rokde **
 
-GitHub: **chiragpuniyanii**
+GitHub: **Rajatrokde**
 
-Email: chiragpuniyani7@gmail.com
+Email: Rajatrokde01@gmail.com
 
 
 This README follows the structure of the steps you provided, ensuring each phase of the setup and deployment 
