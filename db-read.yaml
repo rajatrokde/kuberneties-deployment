@@ -27,9 +27,9 @@ spec:
         - name: db-reader
           image: mysql:latest
           env:
-            - name: MYSQL_USER
+            - name: MYSQL_ROOT_USER
               value: root
-            - name: MYSQL_PASSWORD
+            - name: MYSQL_ROOT_PASSWORD
               value: password
             - name: MYSQL_DB
               value: students
