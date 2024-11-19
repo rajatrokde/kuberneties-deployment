@@ -107,8 +107,8 @@ Enter the password chirag when prompted.
 Once logged in, create your database and table:
 
 ```sql
-USE my_database;
-CREATE TABLE cute_table (
+USE students;
+CREATE TABLE students (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
