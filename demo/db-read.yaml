@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-reader
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3306
+  selector:
+    app: db-reader
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-reader
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-reader
+  template:
+    metadata:
+      labels:
+        app: db-reader
+    spec:
+      containers:
+        - name: db-reader
+          image: mysql:latest
+          env:
+            - name: MYSQL_ROOT_USER
+              value: root
+            - name: MYSQL_ROOT_PASSWORD
+              value: password
+            - name: MYSQL_DB
+              value: students
+

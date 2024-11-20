@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: raj-deployment
+spec:
+  replicas: 1  # Number of pod replicas
+  selector:
+    matchLabels:
+      app: raj
+  template:
+    metadata:
+      labels:
+        app: raj
+    spec:
+      containers:
+        - name: raj
+          image: rajatrokde/k-8-fe:latest  # Docker image
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: raj-service
+spec:
+  selector:
+    app: raj
+  ports:
+    - protocol: TCP
+      port: 80        # Exposed port for the service
+      targetPort: 80  # Port on the container to route traffic to
+  type: LoadBalancer     # Type of service to expose on a node's IP and port
