@@ -1,10 +1,10 @@
 <?php
 // Define cluster DNS names
-$read_servername = "mysql-read-service.default.svc.cluster.local";
-$write_servername = "mysql-write-service.default.svc.cluster.local";
-$username = "username";
+$read_servername = "db-reader.default.svc.cluster.local";
+$write_servername = "db-writer.default.svc.cluster.local";
+$username = "root";
 $password = "password";
-$dbname = "database_name";
+$dbname = "students";
 
 // Create connections
 $read_conn = new mysqli($read_servername, $username, $password, $dbname);
