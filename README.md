@@ -108,9 +108,7 @@ Once logged in, create your database and table:
 
 ```sql
 USE students;
-CREATE TABLE students (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+CREATE TABLE students ( id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL );
 );
 ```
 
