@@ -1,14 +1,14 @@
 <?php
-// Configuration for database connections
-$read_host = "READ_CLUSTER_IP";
-$write_host = "WRITE_CLUSTER_IP";
-$db_user = "root";
-$db_password = "password";
-$db_name = "students";
+// Define cluster DNS names
+$read_servername = "mysql-read-service.default.svc.cluster.local";
+$write_servername = "mysql-write-service.default.svc.cluster.local";
+$username = "username";
+$password = "password";
+$dbname = "database_name";
 
-// Create database connections
-$read_conn = new mysqli($read_host, $db_user, $db_password, $db_name);
-$write_conn = new mysqli($write_host, $db_user, $db_password, $db_name);
+// Create connections
+$read_conn = new mysqli($read_servername, $username, $password, $dbname);
+$write_conn = new mysqli($write_servername, $username, $password, $dbname);
 
 // Check connections
 if ($read_conn->connect_error) {
@@ -19,8 +19,8 @@ if ($write_conn->connect_error) {
 }
 
 // Function to handle read operations
-function readData($read_conn, $query) {
-    $result = $read_conn->query($query);
+function readData($conn, $query) {
+    $result = $conn->query($query);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             echo "Data: " . $row["column_name"] . "<br>";
@@ -31,19 +31,18 @@ function readData($read_conn, $query) {
 }
 
 // Function to handle write operations
-function writeData($write_conn, $query) {
-    if ($write_conn->query($query) === TRUE) {
+function writeData($conn, $query) {
+    if ($conn->query($query) === TRUE) {
         echo "Operation successful.";
     } else {
-        echo "Error: " . $write_conn->error;
+        echo "Error: " . $conn->error;
     }
 }
 
 // Example usage
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Assuming action type is passed in POST data
     $action = $_POST['action'];
-
+    
     if ($action === 'read') {
         $query = "SELECT * FROM table_name"; // Replace with your read query
         readData($read_conn, $query);
